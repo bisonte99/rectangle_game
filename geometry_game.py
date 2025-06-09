@@ -1,5 +1,5 @@
 from random import randint
-
+import turtle
 
 class Point:
 
@@ -26,9 +26,34 @@ class Rectangle:
             (self.point2.y - self.point1.y)
 
 
+class GuiRectangle(Rectangle):
+
+    def draw(self, canvas):
+        # Go to a certain coordinate
+        canvas.penup()
+        canvas.goto(self.point2.x, self.point1.y)
+
+        canvas.pendown()
+        canvas.forward(100)  # Move 100 pixels
+        canvas.left(90)  # Turn 90 degrees left
+        canvas.forward(200)
+        canvas.left(90)
+        canvas.forward(100)
+        canvas.left(90)
+        canvas.forward(200)
+
+        turtle.done()
+
+gui_rectangle = GuiRectangle(Point(randint(0, 400), randint(0, 400)),
+                      Point(randint(10, 400), randint(10, 400)))
+
+myturtle = turtle.Turtle()
+
+gui_rectangle.draw(canvas=myturtle)
+
 # Create rectangle object
-rectangle = Rectangle(Point(randint(0, 9), randint(0, 9)),
-                      Point(randint(10, 19), randint(10, 19)))
+rectangle = Rectangle(Point(randint(0, 400), randint(0, 400)),
+                      Point(randint(10, 400), randint(10, 400)))
 
 # Print rectangle coordinates
 print("Rectangle Coordinates: ",
